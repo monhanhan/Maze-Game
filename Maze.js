@@ -47,6 +47,8 @@ class Maze {
       this.level[i] = new Array(this.LEVEL_WIDTH);
       this.visited[i] = new Array(this.LEVEL_WIDTH);
     }
+
+    this.createBlankLevel();
   }
 
   /**
@@ -58,33 +60,49 @@ class Maze {
     // Make all the spaces blank. We will overwrite this later where walls need to be.
     for (let y = 0; y < this.LEVEL_HEIGHT; y++) {
       for (let x = 0; x < this.LEVEL_WIDTH; x++) {
-        level[y][x] = " ";
-        visited[y][x] = false;
+        this.level[y][x] = " ";
+        this.visited[y][x] = false;
       }
     }
 
     // top barrier
-    for (let x = 0; x < LEVEL_WIDTH; x++) {
-      level[0][x] = ICON_WALL;
-      visited[0][x] = true;
+    for (let x = 0; x < this.LEVEL_WIDTH; x++) {
+      this.level[0][x] = this.ICON_WALL;
+      this.visited[0][x] = true;
     }
 
     // bottom barrier
-    for (let x = 0; x < LEVEL_WIDTH; x++) {
-      level[LEVEL_HEIGHT - 1][x] = ICON_WALL;
-      visited[LEVEL_HEIGHT - 1][x] = true;
+    for (let x = 0; x < this.LEVEL_WIDTH; x++) {
+      this.level[this.LEVEL_HEIGHT - 1][x] = this.ICON_WALL;
+      this.visited[this.LEVEL_HEIGHT - 1][x] = true;
     }
 
     // left barrier
-    for (let y = 0; y < LEVEL_HEIGHT; y++) {
-      level[y][0] = ICON_WALL;
-      visited[y][0] = true;
+    for (let y = 0; y < this.LEVEL_HEIGHT; y++) {
+      this.level[y][0] = this.ICON_WALL;
+      this.visited[y][0] = true;
     }
 
     // Right barrier
-    for (let y = 0; y < LEVEL_HEIGHT; y++) {
-      level[y][LEVEL_WIDTH - 1] = ICON_WALL;
-      visited[y][LEVEL_WIDTH - 1] = true;
+    for (let y = 0; y < this.LEVEL_HEIGHT; y++) {
+      this.level[y][this.LEVEL_WIDTH - 1] = this.ICON_WALL;
+      this.visited[y][this.LEVEL_WIDTH - 1] = true;
     }
   }
 }
+
+// Below is debug code that will print the maze to the console. Consider repurposing it later to represent the maze.
+/*
+const myMaze = new Maze();
+
+var mazePrint = "";
+
+for (let i = 0; i < myMaze.level.length; i++) {
+  for (let j = 0; j < myMaze.level[0].length; j++) {
+    mazePrint += myMaze.level[i][j];
+  }
+  mazePrint += "\n";
+}
+
+console.log(mazePrint);
+*/
